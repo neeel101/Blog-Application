@@ -30,7 +30,8 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Neelesh
+          
+            <%= user.name %>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
@@ -52,5 +53,8 @@
 <div class="container mt-4">
   <% if (locals.Error) { %>
   <div class="alert alert-danger" role="alert"><%= locals.Error %></div>
+  <% } %>
+  <% if (locals.regMsg) { %>
+   <div class="alert alert-success" role="alert"><%= locals.regMsg %></div>
   <% } %>
 </div>

@@ -8,6 +8,11 @@ const blogSchema = new Schema(
     coverImageURL: {
       type: String,
       required: true,
+      
+    }, 
+    body:{
+      type: String,
+      required: true
     },
     createdBy: {
       type: Schema.Types.ObjectId,

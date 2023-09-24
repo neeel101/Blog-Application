@@ -16,7 +16,9 @@ router.post("/signup", async (req, res) => {
     email,
     password,
   }); 
-  res.redirect("/");
+  res.render("home", {
+    regMsg: "You've Registered, Now Please Signin."
+  });
   } catch (error) {
     res.render("signup", {Error : "email already exists ! Please SIgnIn"})
   }

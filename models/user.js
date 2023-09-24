@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 const { createTokenForUser } = require("../services/authentication");
 const userSchema = new Schema(
   {
-    fullName: {
+    fullName: { 
       type: String,
       required: true,
     },
@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     profileImageURL: {
       type: String,
-      default: "../public/images/defaultUserImage.png",
+      default: "/images/defaultUserImage.png",
     },
     role: {
       type: String,
@@ -49,23 +49,19 @@ userSchema.pre("save", function (next) {
 userSchema.static(
   "matchedPasswordAndGenerateToken",
   async function (email, password) {
- 
-      const user = await this.findOne({ email });
+    const user = await this.findOne({ email });
     if (!user) throw new Error("User not found");
     const salt = user.salt;
     const hashedPassword = user.password;
     const userProvidedHash = createHmac("sha256", salt)
       .update(password)
-      .digest("hex"); 
+      .digest("hex");
 
     if (userProvidedHash !== hashedPassword)
       throw new Error("InCorrect password");
-   
+
     const token = createTokenForUser(user);
     return token;
-    
-    
-    
   }
 );
 const User = model("user", userSchema);

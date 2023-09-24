@@ -1,0 +1,19 @@
+.inner{
+    width:24%
+}
+
+img{
+    max-width:100%;
+    border-radius: 5px;
+}
+@media (max-width: 768px) {
+
+    .inner-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .inner{
+        width: 80%
+    }
+}
