@@ -29,7 +29,7 @@ router.get("/:id", async(req, res) => {
   return res.render("blog", {
     user: req.user,
     blog,
-    comments
+    comments 
   });
 })
 
