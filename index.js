@@ -2,16 +2,17 @@ const express = require("express");
 const UserRoute = require("./routes/user");
 const BlogRoute = require("./routes/blog");
 const path = require("path");
+const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser");
 const Blog = require("./models/blog");
-const app = express();
-const PORT = 8000;
-const { connect } = require("mongoose");
 const { checkForAuthenticationCookie } = require("./middlewares/authentication");
+const app = express();
+const connectDB = require("./config/db.js")
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+connectDB();
 
-connect("mongodb+srv://neeleshvinchoorkar:ngpglrKNezfz8EJf@cluster0.jcflxvu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-  dbName: "blog-db",
-}).then(() => console.log("mongo DB Connected"));
+const PORT = process.env.PORT || 8000;
+
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
